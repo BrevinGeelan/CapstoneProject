@@ -1,0 +1,40 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+.search-sort-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 20px;
+}
+
+.sort {
+margin-left: 20px;
+}
+
+.search-bar {
+margin-right: 20px;
+}
+
+ul {
+  list-style: none;
+}
+img {
+  height: 220px;
+  width: 190px;
+}
+
+.cart {
+  min-height: 100vh;
+  min-width: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
