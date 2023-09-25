@@ -6,10 +6,11 @@ export default function Logout() {
 
     const handleLogOut = () => {
 
-        sessionStorage.removeItem("token");
+        localStorage.removeItem("token");
 
 
         navigate("/Login")
+        window.location.reload();
     }
 
     return (

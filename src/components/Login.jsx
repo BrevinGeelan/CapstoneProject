@@ -37,11 +37,12 @@ export default function Login() {
                 const result = await response.json();
                 const token = result.token;
 
-                sessionStorage.setItem("token", result.token);
+                localStorage.setItem("token", result.token);
                 console.log("Authentication Successful");
                 console.log("received token", token)
                 setToken(result.token)
                 navigate("/")
+                window.location.reload()
             } else{
                 console.error("Authentication failed");
             }

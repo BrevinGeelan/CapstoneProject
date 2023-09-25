@@ -6,23 +6,23 @@ import { useCart } from "./CartContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import CartItem from "./CartProduct";
+import Login from "./Login";
 
 
 export default function Navbar() {
 const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-const [LoggedIn, setLoggedIn] = useState(false);
+//const [LoggedIn, setLoggedIn] = useState(false);
 const { cartState } = useCart();
 
 const totalItemsInCart = cartState.items.reduce(
     (total, item) => total + item.quantity,
     0
 )
+const isLoggedIn = !!localStorage.getItem("token");
 
 useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    setLoggedIn(!!token);
-    console.log("logged in:", !!token)
-}, []);
+   console.log("logged in", isLoggedIn)
+}, [isLoggedIn]);
 
 
 const toggleDropdown = () => {
@@ -56,14 +56,14 @@ const toggleDropdown = () => {
                 <li> <Link to="/Registration">Register</Link></li>
                 <li> <Link to="/Login">Login</Link></li>
                 <li>
-                    {LoggedIn &&
+                    {isLoggedIn &&
                     <Link to="/Cart">
                     <span className="cart-count">{totalItemsInCart}</span>
                     <FontAwesomeIcon icon={faCartShopping} />
                     </Link>}
 
                 </li>
-                <li>{LoggedIn && <Logout />} </li>
+                <li>{isLoggedIn && <Logout />} </li>
             </ul>
         </nav>
     );
