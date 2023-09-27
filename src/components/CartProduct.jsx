@@ -4,11 +4,16 @@ import { useCart } from "./CartContext";
 export default function CartItem({item, handleQuantChange, handleRemoveFromCart }) {
 
     return (
-        <li>
+        <li className="cart-item">
+            <div className="cart-item-info">
             <img src={item.image} alt={item.title} />
-            {item.title} - ${item.price}
+            <div className="container">
+           <h3 className="cart-item-title"> {item.title} </h3>
+            <p className="cart-item-price">${item.price}</p> 
+            </div>
+             
         <div className="quant-drop">
-        <label htmlFor={`quantity-${item.id}`}>Quantity</label>
+        <label htmlFor={`quantity-${item.id}`}>Quantity: </label>
         <select
         id={`quantity-${item.id}`}
         value={item.quantity}
@@ -21,7 +26,8 @@ export default function CartItem({item, handleQuantChange, handleRemoveFromCart 
             ))}
         </select>
         </div>
-        <button onClick={handleRemoveFromCart}>Remove</button>
+        </div>
+        <button  className="cart-item-remove" onClick={handleRemoveFromCart}>Remove</button>
         </li>
     )
 }

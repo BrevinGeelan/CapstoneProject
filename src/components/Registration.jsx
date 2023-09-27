@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {Link} from "react-router-dom"
 import { useNavigate } from "react-router-dom";
+import "../login.css"
 
 export default function Register() {
     const [email, setEmail] = useState("");
@@ -37,42 +38,48 @@ export default function Register() {
 
 return (
     <div className="register">
-        <h2>Register</h2>
+        <div className="register-form">
         <form onSubmit={handleRegister}>
-            <label>
+        <h2 className="register-title">Register</h2>
+            <label className="register-label">
                 Email: 
                 <input 
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
                 />
             </label>
-            <label>
+            <label className="register-label">
                 Username:
                 <input 
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                required
                  />
             </label>
-            <label>
-                Password:
+            <label className="register-label">
+                Password: 
                 <input 
-                type="text"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
                  />
             </label>
-            <label>
-                Confirm Password:
+            <label className="register-label">
+                Confirm Password: 
                 <input 
-                type="text"
+                type="password"
                 value={pass2}
                 onChange={(e) => setPass2(e.target.value)}
+                required
                  />
             </label>
-            <button type="submit">Register!</button>
+            <button className="login-button" type="submit">Register!</button>
         </form>
+    </div>
     </div>
 )
 }

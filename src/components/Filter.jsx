@@ -20,11 +20,11 @@ export default function Filter({onFilterChange, onParamChange, onApply,}) {
             "$200+",
         ],
         rating: [
-            "1 Star",
-            "2 Stars",
-            "3 Stars",
-            "4 Stars",
-            "5 Stars",
+            "0-1 Stars",
+            "1-2 Stars",
+            "2-3 Stars",
+            "3-4 Stars",
+            "4-5 Stars",
         ],
     };
 
@@ -40,7 +40,9 @@ export default function Filter({onFilterChange, onParamChange, onApply,}) {
     };
 
     const applyFilter = () => {
+        
         onApply(selectedOption, selectedParam);
+       
     };
     
     return (
@@ -62,7 +64,10 @@ export default function Filter({onFilterChange, onParamChange, onApply,}) {
                     ))}
                 </select>
             )}
-            {selectedOption !== "default"  && <button onClick={applyFilter}>Apply</button>}
+            {(selectedOption === "default" || 
+            selectedOption === "priceRange" ||
+             selectedOption === "rating") && (
+             <button onClick={applyFilter}>Apply</button>)}
         </div>
     )
 }

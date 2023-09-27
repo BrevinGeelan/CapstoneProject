@@ -2,6 +2,7 @@ import React from "react";
 import { useCart } from "./CartContext";
 import CartItem from "./CartProduct";
 import {Link} from "react-router-dom";
+import "../cartcheck.css"
 
 export default function Cart() {
     const { cartState, dispatch } = useCart();
@@ -56,7 +57,7 @@ export default function Cart() {
                 <Link to="/Checkout">
                     <button>Proceed to Checkout</button>
                 </Link>
-                <button onClick={handleClearCart}>
+                <button  id="clear-button" onClick={handleClearCart}>
                     Clear Cart
                 </button>
             </div>

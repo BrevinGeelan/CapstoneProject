@@ -1,0 +1,195 @@
+.cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    
+}
+
+.cart h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1500px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.cart-item-info {
+    display: flex;
+    align-items: center;
+}
+
+.cart-item img {
+    max-width: 80px;
+    max-height: 80px;
+    margin-right: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 400px;
+    align-items: center;
+    text-align: center;
+    margin-left: 460px;
+}
+
+.cart-item-title {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
+
+.cart-item-price {
+    font-size: 16px;
+    color: #1a9850;
+    margin-top:5px ;
+}
+
+.cart-item-quantity {
+    font-size: 14px;
+    color: #666;
+}
+
+.cart-item-remove {
+    font-size: 14px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.cart-item-remove:hover {
+    background-color: #aa0000;
+}
+
+.subtotal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.subtotal button {
+    background-color: #1a9850;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.subtotal button:hover {
+    background-color: #006937;
+}
+#clear-button {
+    background-color: #ff0000;
+}
+#clear-button:hover {
+    background-color: #aa0000;
+}
+
+.quant-drop {
+    margin-left: 150px;
+}
+
+
+.checkout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.checkout h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.checkout .checkout-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+
+.checkout-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: hsl(0, 0, 95%);
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.checkout-button {
+    background-color: #1a9850;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.checkout-button:hover {
+    background-color: #006937;
+}
+
+.back-button {
+    background-color: #ff0000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #aa0000;
+}
+
+.check-form {
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    text-align: center;
+    transition: 0.3s;
+    margin-top: 40px;
+
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 100px;
+}

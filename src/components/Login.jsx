@@ -53,9 +53,11 @@ export default function Login() {
     }
 
     return (
-        <div className="login-page">
-            <h2>Login!</h2>
+        <>
+            
+            <div className="login-page">
             <div className="login-form">
+            <h2 className="login-head">Login!</h2>
             <form onSubmit={handleLogin}>
                 <label>
                     Username: 
@@ -65,6 +67,7 @@ export default function Login() {
                     value={username}
                     placeholder="johnd"
                     onChange={(e) => setUsername(e.target.value)}
+                    required
                      />
                 </label>
                 <label>
@@ -75,11 +78,18 @@ export default function Login() {
                     value={password}
                     placeholder="m38rmF$"
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                      />
                 </label>
+                <div className="buttons">
                 <button className="login-button" type="submit">Login</button>
+                <p>or</p>
+                <button className="register-button" onClick={() => navigate("/Registration")}>Create an Account!</button>
+                </div>
             </form>
             </div>
         </div>
+       
+        </>
     );
 }
