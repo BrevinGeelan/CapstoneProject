@@ -10,7 +10,7 @@ import Login from "./Login";
 
 
 export default function Navbar() {
-const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+//const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 //const [LoggedIn, setLoggedIn] = useState(false);
 const { cartState } = useCart();
 
@@ -25,45 +25,35 @@ useEffect(() => {
 }, [isLoggedIn]);
 
 
-const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen)
-}
+//const toggleDropdown = () => {
+ //   setIsDropdownOpen(!isDropdownOpen)
+//}
 
    
     return (
         <nav className="navbar">
+            <div className="nav-title">
+                FullStack E-Commerce
+            </div>
             <ul className="nav-list">
-                <li><Link to="/">Home</Link></li>
-                <li className="dropdown">
-                    <span onClick={toggleDropdown}>Categories</span>             
-                   
-                    <ul className={`dropdown-content ${isDropdownOpen ? 'open' : ''}`}>
-                        <li>
-                            <Link to="/MensCat">Men's Clothing</Link>
-                        </li>
-                        <li>
-                            <Link to="/WomensCat">Women's Clothing</Link>
-                        </li>
-                        <li>
-                            <Link to="/ElecCat">Electronics</Link>
-                        </li>
-                        <li>
-                            <Link to="/Jewelery">Jewelery</Link>
-                        </li>
-                    </ul>
-                
-                </li>
-                <li> <Link to="/Registration">Register</Link></li>
-                <li> <Link to="/Login">Login</Link></li>
+                <li><Link to="/" className="nav-button">Home</Link></li>
+                <li> <Link to="/Registration" className="nav-button">Register</Link></li>
+                <li> 
+                    {isLoggedIn ? (
+                        <Logout className="log-out-button" />
+                    ) : (
+                    <Link to="/Login" className="nav-button">Login</Link>
+                    )}
+                    </li>
+                    
                 <li>
                     {isLoggedIn &&
-                    <Link to="/Cart">
+                    <Link to="/Cart" className="cart-button">
                     <span className="cart-count">{totalItemsInCart}</span>
                     <FontAwesomeIcon icon={faCartShopping} />
                     </Link>}
 
                 </li>
-                <li>{isLoggedIn && <Logout />} </li>
             </ul>
         </nav>
     );

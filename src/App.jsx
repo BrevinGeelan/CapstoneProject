@@ -7,7 +7,7 @@ import Modal from 'react-modal'
 import Mens from './components/MensCat'
 import Womens from './components/WomensCat'
 import Electronics from './components/ElecCat'
-import Jewels from './components/Jewelery'
+import Jewels from './components/Jewelry'
 import Register from './components/Registration'
 import Login from './components/Login'
 import Cart from './components/Cart'
@@ -25,7 +25,7 @@ function App() {
         <Route path="/MensCat" element={<Mens />} />
         <Route path="/WomensCat" element={<Womens />} />
         <Route path="/ElecCat" element={<Electronics />} />
-        <Route path="/Jewelery" element={<Jewels />} />
+        <Route path="/Jewelry" element={<Jewels />} />
         <Route path="/Registration" element={<Register />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Cart" element={<Cart />} />

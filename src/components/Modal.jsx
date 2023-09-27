@@ -1,39 +1,38 @@
 import React from "react";
 import Modal from "react-modal";
 import { useCart } from "./CartContext";
+import { useNavigate } from "react-router-dom";
+import "../App.css"
+import ModalCard from "./ModalCard";
+
+
+const customStyles = {
+    content: {
+        width: "50%",
+        height: "60%",
+        margin: "auto",
+        overflow: "auto",
+        backgroundColor: "#f0f0f0",
+    },
+    overlay: {
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        backdropFilter: "blur(5px)"
+    },
+};
 
 export default function ProductModal({ isOpen, closeModal, product }) {
-    const {dispatch} = useCart();
+  
 
-    const addToCart = () => {
-        const addedProduct = {
-            id: product.id,
-            image: product.image,
-            title: product.title,
-            price: product.price,
-            quantity: 1,
-        };
-        console.log('adding to cart:', addedProduct)
-
-        dispatch({type: 'ADD_TO_CART', payload: addedProduct });
-
-
-        closeModal();
-    }
     return (
         <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}
         contentLabel="Product Details"
+        style={customStyles}
         >
-        <h2>{product.title}</h2>
-        <p>Price: ${product.price}</p>
-        <p>Description: {product.description}</p>
-        <p>Category: {product.category}</p>
-        <p>Rating: {product.rating.rate} (Count: {product.rating.count})</p>
-        <img src={product.image} alt={product.title} />
-        <button onClick={addToCart}>Add to Cart</button>
-        <button onClick={closeModal}>Close</button>
+        <h2 style={{ textAlign: 'center'}}>{product.title}</h2>
+       <ModalCard product={product} closeModal={closeModal} />
+
         </Modal>
     );
 };

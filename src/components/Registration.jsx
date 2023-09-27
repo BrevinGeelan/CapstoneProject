@@ -1,11 +1,13 @@
 import { useState } from "react";
 import {Link} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword]= useState("");
     const [pass2, setPass2] = useState("")
+    const navigate = useNavigate();
 
     async function handleRegister(event) {
         event.preventDefault();
@@ -26,6 +28,8 @@ export default function Register() {
             })
             const result = await response.json();
             console.log(result)
+            alert("Successful registration, returning to Home.\n(Backend in progress/unfinished, please continue to use API provided Logins) ", )
+            navigate("/")
         } catch(error) {
             console.error(error)
         }

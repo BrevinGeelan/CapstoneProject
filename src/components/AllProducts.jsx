@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom"
 import { GetAllProducts } from "./API";
 import ProductModal from "./Modal";
 import SearchBar from "./SearchBar";
+import ProductCard from "./ProductCard";
+import "../App.css"
+
 
 
 
@@ -76,7 +80,11 @@ const closeModal = () => {
     setSelectedProduct(null);
     setIsModalOpen(false);
 };
-
+//const handleDropChange = (event) => {
+  //  const dropdown = event.target;
+  //  const margin = dropdown.offsetHeight + 10;
+  //  document.querySelector(".pro-container").style.marginTop = `${margin}px`
+//}
 return (
     <>
     <div>
@@ -86,7 +94,9 @@ return (
             <label>Sort by: </label>
             <select 
             value={sortOption}
-            onChange={(e) => handleSortChange(e.target.value)}
+            onChange={(e) => 
+                handleSortChange(e.target.value)
+               }
             >
             <option value="default">Default</option>
             <option value="alphabetical">A-Z</option>
@@ -97,17 +107,32 @@ return (
       
         <SearchBar products={products} openModal={openModal}  className="search-bar"/>
         </div>
-        <ul>
+        <div className="route-buttons">
+            <Link to="/" className="route-button">
+                All Products
+            </Link>
+            <Link to="/MensCat" className="route-button">
+                Men's Clothing
+            </Link>
+            <Link to="/WomensCat" className="route-button">
+                Women's Clothing
+            </Link>
+            <Link to="/Jewelry" className="route-button">
+                Jewelry
+            </Link>
+            <Link to="/ElecCat" className="route-button">
+                Electronics
+            </Link>
+        </div>
+        <div className="pro-container">
+        
 {sortedProducts.map((product) => (
-    <li key={product.id}>
-        <h3>{product.title}</h3>
-        <p>Price: ${product.price}</p>
-        <p>Description: {product.description}</p>
-        <img src={product.image} alt={product.title} />
-        <button onClick={() => openModal(product)}>View Details</button>
-    </li>
+  
+        <ProductCard key={product.id} product={product} openModal={() => openModal(product)} />
+    
 ))}
-</ul>
+
+</div>
     </div>
     {selectedProduct && (
         <ProductModal
