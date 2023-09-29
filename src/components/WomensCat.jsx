@@ -75,7 +75,11 @@ export default function Womens() {
         
         if (filter === "default") {
             setSortedWomens([...womensProducts])
-        }
+        } else if ( filter === "Select Price Range") {
+            setSortedWomens([...womensProducts])
+        }   else if (filter === "Selcect Rating Range") {
+            setSortedWomens([...womensProducts])
+        } 
         else if (filter === "priceRange") {
             switch (param) {
                 case "$0-$50":

@@ -75,7 +75,11 @@ export default function Electronics() {
         
         if (filter === "default") {
             setSortedElectronics([...electronics])
-        }
+        } else if ( filter === "Select Price Range") {
+            setSortedElectronics([...electronics])
+        }   else if (filter === "Selcect Rating Range") {
+            setSortedElectronics([...electronics])
+        } 
         else if (filter === "priceRange") {
             switch (param) {
                 case "$0-$50":

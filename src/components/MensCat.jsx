@@ -5,6 +5,7 @@ import ProductModal from "./Modal";
 import SearchBar from "./SearchBar";
 import CatProductCard from "./CatProductCard";
 import Filter from "./Filter";
+import "../App.css"
 
 export default function Mens() {
     const [mensProducts, setMensProducts] = useState([]);
@@ -76,9 +77,14 @@ export default function Mens() {
         
         if (filter === "default") {
             setSortedMens([...mensProducts])
-        }
+        } else if ( filter === "Select Price Range") {
+            setSortedMens([...mensProducts])
+        }   else if (filter === "Selcect Rating Range") {
+            setSortedMens([...mensProducts])
+        } 
         else if (filter === "priceRange") {
             switch (param) {
+
                 case "$0-$50":
                     filteredProducts = filteredProducts.filter(
                     (product) => product.price >= 0 && product.price < 50    
@@ -168,10 +174,14 @@ export default function Mens() {
                 </Link>
             </div>
             <div className="cat-pro">
-            {sortedMens.map((product) => (
-            <CatProductCard key={product.id} product={product} category="men's clothing" openModal={() => openModal(product)} />
-    
-            ))}
+                {sortedMens.length === 0 ? (
+                    <p>No Products Found</p>
+                ) : (
+            sortedMens.map((product) => (
+            <CatProductCard key={product.id} product={product} category="men's clothing" openModal={() => openModal(product)} 
+            />
+            ))
+            )}
             </div>
 
         {selectedProduct && (

@@ -76,7 +76,11 @@ export default function Jewels() {
         
         if (filter === "default") {
             setSortedJewels([...jewelery])
-        }
+        } else if ( filter === "Select Price Range") {
+            setSortedJewels([...jewelery])
+        }   else if (filter === "Selcect Rating Range") {
+            setSortedJewels([...jewelery])
+        } 
         else if (filter === "priceRange") {
             switch (param) {
                 case "$0-$50":

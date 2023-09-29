@@ -5,6 +5,7 @@ import ProductModal from "./Modal";
 import SearchBar from "./SearchBar";
 import ProductCard from "./ProductCard";
 import "../App.css"
+import Filter from "./Filter";
 
 
 
@@ -18,6 +19,9 @@ const [selectedProduct, setSelectedProduct] = useState(null);
 const [sortOption, setSortOption] = useState("default")
 const [sortedProducts, setSortedProducts] = useState([]);
 const [sortDirection, setSortDirection] = useState("asc");
+const [selectedFilter, setSelectedFilter] = useState("default");
+const [selectedFilterParam, setSelectedFilterParam] = useState("");
+const [ratingData, setRatingData] = useState([]); 
 
 useEffect (() => {
     const getProducts = async () => {
@@ -26,6 +30,8 @@ useEffect (() => {
             const productData = await GetAllProducts();
             setProducts(productData);
             setSortedProducts(productData);
+            const ratings = products.map((product) => product.rating);
+                setRatingData(ratings)
         } catch (error) {
             setError(error.message);
         }
@@ -80,6 +86,71 @@ const closeModal = () => {
     setSelectedProduct(null);
     setIsModalOpen(false);
 };
+
+const handleFilterChange = (filter) => {
+    setSelectedFilter(filter);
+};
+
+const handleFilterParamChange = (param) => {
+    setSelectedFilterParam(param);
+};
+
+const handleApplyFilter = (filter, param) => {
+    let filteredProducts = [...products]
+    
+    
+    if (filter === "default") {
+        setSortedProducts([...products])
+    } else if ( filter === "Select Price Range") {
+        setSortedProducts([...products])
+    }   else if (filter === "Selcect Rating Range") {
+        setSortedProducts([...products])
+    } 
+    else if (filter === "priceRange") {
+        switch (param) {
+            case "$0-$50":
+                filteredProducts = filteredProducts.filter(
+                (product) => product.price >= 0 && product.price < 50    
+                );
+                break;
+                case "$50-$100":
+                    filteredProducts = filteredProducts.filter(
+                      (product) => product.price > 50 && product.price <= 100
+                    );
+                    break;
+                  case "$100-$150":
+                    filteredProducts = filteredProducts.filter(
+                      (product) => product.price > 100 && product.price <= 150
+                    );
+                    break;
+                  case "$150-$200":
+                    filteredProducts = filteredProducts.filter(
+                      (product) => product.price > 150 && product.price <= 200
+                    );
+                    break;
+                  case "$200+":
+                    filteredProducts = filteredProducts.filter(
+                      (product) => product.price > 200
+                    );
+                    break;
+                  default:
+                 
+                    break;
+                }
+              } else if (filter === "rating") {
+                const ratingRange = param.split("-");;
+                const minRating = parseFloat(ratingRange[0]);
+                const maxRating = parseFloat(ratingRange[1]);
+                
+                filteredProducts = filteredProducts.filter(
+                  (product) => product.rating.rate >= minRating && product.rating.rate <= maxRating
+                );
+              }
+            
+              
+              setSortedProducts(filteredProducts);
+              console.log(filteredProducts)
+            };
 //const handleDropChange = (event) => {
   //  const dropdown = event.target;
   //  const margin = dropdown.offsetHeight + 10;
@@ -104,6 +175,11 @@ return (
             <option value="priceDesc">Price (High to Low)</option>    
             </select>
         </div>
+        <Filter
+            onFilterChange={handleFilterChange}
+            onParamChange={handleFilterParamChange}
+            onApply={handleApplyFilter}
+            />
       
         <SearchBar products={products} openModal={openModal}  className="search-bar"/>
         </div>
