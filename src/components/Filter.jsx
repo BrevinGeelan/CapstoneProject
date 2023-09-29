@@ -13,6 +13,7 @@ export default function Filter({onFilterChange, onParamChange, onApply,}) {
     
     const filterParam = {
         priceRange: [
+            "Select Price Range",
             "$0-$50",
             "$50-$100",
             "$100-$150",
@@ -20,6 +21,7 @@ export default function Filter({onFilterChange, onParamChange, onApply,}) {
             "$200+",
         ],
         rating: [
+            "Select Rating Range",
             "0-1 Stars",
             "1-2 Stars",
             "2-3 Stars",

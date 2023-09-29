@@ -52,7 +52,7 @@ const ProductCard = ({ product, category, openModal,}) => {
         <img src={product.image} alt={product.title} className="product-image" />
         <div className='pro-details'>
         <h3 className="pro-title">{product.title}</h3>
-        <p className="pro-price">Price: ${product.price}</p>
+        <p className="pro-price">Price: ${product.price.toFixed(2)}</p>
     <div className='add-details'>
         <button className='add-button' onClick={handleButtonClick}>
             {isInCart ? 'Go to Cart' : 'Add to Cart'}

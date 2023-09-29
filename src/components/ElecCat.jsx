@@ -4,6 +4,7 @@ import ProductModal from "./Modal";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import CatProductCard from "./CatProductCard";
+import Filter from "./Filter";
 
 export default function Electronics() {
     const [electronics, setElectronics] = useState([])
@@ -14,6 +15,9 @@ export default function Electronics() {
     //sorting variables
     const [sortOption, setSortOption] = useState("default");
     const [sortedElectronics, setSortedElectronics] = useState([]);
+    const [selectedFilter, setSelectedFilter] = useState("default");
+    const [selectedFilterParam, setSelectedFilterParam] = useState("");
+    const [ratingData, setRatingData] = useState([]); 
 
     useEffect(() => {
         const getElectronics = async () => {
@@ -24,6 +28,8 @@ export default function Electronics() {
                 );
                 setElectronics(electronics)
                 setSortedElectronics(electronics)
+                const ratings = electronics.map((product) => product.rating);
+                setRatingData(ratings)
             } catch (error) {
                 setError(error.message);
             }
@@ -55,6 +61,68 @@ export default function Electronics() {
         }
     }
 
+    const handleFilterChange = (filter) => {
+        setSelectedFilter(filter);
+    };
+
+    const handleFilterParamChange = (param) => {
+        setSelectedFilterParam(param);
+    };
+
+    const handleApplyFilter = (filter, param) => {
+        let filteredProducts = [...electronics]
+        
+        
+        if (filter === "default") {
+            setSortedElectronics([...electronics])
+        }
+        else if (filter === "priceRange") {
+            switch (param) {
+                case "$0-$50":
+                    filteredProducts = filteredProducts.filter(
+                    (product) => product.price >= 0 && product.price < 50    
+                    );
+                    break;
+                    case "$50-$100":
+                        filteredProducts = filteredProducts.filter(
+                          (product) => product.price > 50 && product.price <= 100
+                        );
+                        break;
+                      case "$100-$150":
+                        filteredProducts = filteredProducts.filter(
+                          (product) => product.price > 100 && product.price <= 150
+                        );
+                        break;
+                      case "$150-$200":
+                        filteredProducts = filteredProducts.filter(
+                          (product) => product.price > 150 && product.price <= 200
+                        );
+                        break;
+                      case "$200+":
+                        filteredProducts = filteredProducts.filter(
+                          (product) => product.price > 200
+                        );
+                        break;
+                      default:
+                     
+                        break;
+                    }
+                  } else if (filter === "rating") {
+                    const ratingRange = param.split("-");;
+                    const minRating = parseFloat(ratingRange[0]);
+                    const maxRating = parseFloat(ratingRange[1]);
+                    
+                    filteredProducts = filteredProducts.filter(
+                      (product) => product.rating.rate >= minRating && product.rating.rate <= maxRating
+                    );
+                  }
+                
+                  
+                  setSortedElectronics(filteredProducts);
+                  console.log(filteredProducts)
+                };
+        
+
     return (
         <div>
             <h2>Electronics</h2>
@@ -71,6 +139,11 @@ export default function Electronics() {
                     <option value="priceDesc">Price (High to Low)</option>
                 </select>
             </div>
+            <Filter
+            onFilterChange={handleFilterChange}
+            onParamChange={handleFilterParamChange}
+            onApply={handleApplyFilter}
+            />
             <SearchBar products={electronics} openModal={openModal}  className="search-bar"/>
             </div>
             <div className="route-buttons">
